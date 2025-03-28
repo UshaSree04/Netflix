@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      background-color: #141414;
+      padding: 20px;
+    }
+
+    .navbar .nav-pills .nav-link {
+      color: #fff;
+      margin-right: 20px;
+    }
+
+    .navbar .nav-pills .nav-link:hover {
+      color: #e50914;
+    }
+
+    .right-container {
+      float: right;
+    }
+
+    .right-container .sub-btn {
+      background-color: #e50914;
+      padding: 8px 20px;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .right-container .login-link {
+      color: white;
+      margin-left: 20px;
+    }
+
+    /* Card Grid Layout */
+
+    .movie-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .movie-card {
+      background-color: #E50914;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 20px;
+      transition: transform 0.2s;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+
+    .movie-card h3 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    .movie-card p {
+      color: white;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .movie-card .info {
+      margin-top: 10px;
+    }
+
+    .movie-card .info span {
+      font-weight: bold;
+    }
+
+    .movie-card .description {
+      margin-top: 10px;
+      color: #777;
+    }
+
+    /* Style the Subscribe and Login Button */
+    .sub-btn, .login-link {
+      color: white;
+      font-weight: bold;
+    }
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #141414;
+      color: #fff;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #141414;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo img {
+      width: 100px;
+      height: auto;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .nav-links a {
+      text-decoration: none;
+      color: #fff;
+      margin-left: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #e50914; /* Netflix red */
+    }
+
+    .navbar .search {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .search input {
+      padding: 5px;
+      border: none;
+      border-radius: 20px;
+      width: 250px;
+      font-size: 14px;
+      margin-right: 20px;
+    }
+
+    .navbar .search button {
+      background-color: #e50914;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .navbar .search button:hover {
+      background-color: #b20710;
+    }
+
+    .navbar .profile img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+<div class="navbar">
+    <!-- Logo Section -->
+    <div class="logo">
+      <img src="{{ url_for('static',filename='images/logo.png')}}" alt="Netflix Logo">
+                      <a href="/subscription">subscribe</a>
+
+    </div>
+    <div class="right-containerr">
+            <a href="/logout" class="login-link">Logout</a>
+        </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/movies">Movies</a>
+      <a href="/add-movies">AddMovies</a>
+    </div>
+
+    <!-- Search Bar and Profile -->
+
+      <div class="profile">
+        <img src="{{ url_for('static',filename='images/netflixavatar.png')}}" alt="Profile">
+      </div>
+    </div>
+
+
+  <!-- Movies Section -->
+  <h1 style="text-align: center; margin-top: 20px;">Movies List</h1>
+
+  <!-- Cards Layout -->
+  <div class="movie-cards">
+    {% for movie in movies %}
+    <div class="movie-card">
+      <h3>{{ movie.movies_title }}</h3>
+      <div class="info">
+        <p><span>Director:</span> {{ movie.cast_director }}</p>
+        <p><span>Cast:</span> {{ movie.cast_cast }}</p>
+        <p><span>Country:</span> {{ movie.cast_country }}</p>
+        <p><span>Release Year:</span> {{ movie.movies_release_year }}</p>
+
+
+      </div>
+      <div class="description">
+        <p>{{ movie.movies_description }}</p>
+        <a href="{{ url_for('edit_movie', movie_id=movie.id) }}">Edit</a>
+            <a href="{{ url_for('delete_movie', movie_id=movie.id) }}">Delete</a>
+        </li>
+
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>

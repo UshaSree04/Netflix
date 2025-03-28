@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Movie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 20px;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+    form input, form textarea, form button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    form button {
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #b20710;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Edit Movie</h1>
+  <form method="POST">
+    <label for="movies_title">Title:</label>
+    <input type="text" id="movies_title" name="movies_title" value="{{ movie.movies_title }}" required>
+
+    <label for="cast_director">Director:</label>
+    <input type="text" id="cast_director" name="cast_director" value="{{ movie.cast_director }}" required>
+
+    <label for="cast_cast">Cast:</label>
+    <input type="text" id="cast_cast" name="cast_cast" value="{{ movie.cast_cast }}" required>
+
+    <label for="cast_country">Country:</label>
+    <input type="text" id="cast_country" name="cast_country" value="{{ movie.cast_country }}" required>
+
+    <label for="movies_release_year">Release Year:</label>
+    <input type="number" id="movies_release_year" name="movies_release_year" value="{{ movie.movies_release_year }}" required>
+
+    <label for="movies_description">Description:</label>
+    <textarea id="movies_description" name="movies_description" rows="5" required>{{ movie.movies_description }}</textarea>
+
+    <a href="{{ url_for('edit_movie', movie_id=movie.id) }}">Edit</a>
+<button type="submit">Update Movie</button>
+  </form>
+</body>
+</html>

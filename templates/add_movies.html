@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AddMovies</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f0f0f0;
+margin: 0;
+padding: 20px;
+}
+h1 {
+color: #333;
+text-align: center;
+}
+table {
+width: 100%;
+max-width: 600px;
+margin: 0 auto;
+background-color: #c08686;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+td {
+padding: 10px;
+}
+label {
+color: white;
+font-weight: bold;
+}
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+width: 100%;
+padding: 8px;
+border: 1px solid #ddd;
+border-radius: 4px;
+box-sizing: border-box;
+font-size: 16px;
+}
+input[type="submit"]:hover {
+background-color: #45a049;
+}
+.error {
+color: #ff0000;
+font-size: 14px;
+}
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #141414;
+      color: #fff;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #141414;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo img {
+      width: 100px;
+      height: auto;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .nav-links a {
+      text-decoration: none;
+      color: #fff;
+      margin-left: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #e50914; /* Netflix red */
+    }
+
+    .navbar .search {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .search input {
+      padding: 5px;
+      border: none;
+      border-radius: 20px;
+      width: 250px;
+      font-size: 14px;
+      margin-right: 20px;
+    }
+
+    .navbar .search button {
+      background-color: #e50914;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .navbar .search button:hover {
+      background-color: #b20710;
+    }
+
+    .navbar .profile img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="navbar">
+    <!-- Logo Section -->
+    <div class="logo">
+      <img src="{{ url_for('static',filename='images/logo.png')}}" alt="Netflix Logo">
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/movies">Movies</a>
+      <a href="/add-movies">AddMovies</a>
+    </div>
+
+    <!-- Search Bar and Profile -->
+
+      <div class="profile">
+        <img src="{{ url_for('static',filename='images/netflixavatar.png')}}" alt="Profile">
+                <a href="/subscription">subscribe</a>
+
+      </div>
+    </div>
+
+<h1 style="color:#fff;">AddMovies</h1>
+
+<form action="/add-movies" method="POST">
+    <label for="cast_director">Movie Director: </label>
+    <input type="text" id="cast_director" name="cast_director" required><br>
+
+    <label for="cast_cast">Movie Cast: </label>
+    <input type="text" id="cast_cast" name="cast_cast" required><br>
+
+    <label for="cast_country">Country: </label>
+    <input type="text" id="cast_country" name="cast_country" required><br>
+
+    <label for="movies_title">Movie Title: </label>
+    <input type="text" id="movies_title" name="movies_title" required><br>
+
+
+
+    <label for="movies_description">Movie Description: </label>
+    <textarea id="movies_description" name="movies_description" rows="4" required></textarea><br>
+
+    <label for="movies_release_year">Release Year: </label>
+    <input type="text" id="movies_release_year" name="movies_release_year" required><br>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
